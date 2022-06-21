@@ -26,6 +26,7 @@ window.onload = function() {
     var modal = document.getElementById("modal_ok")
     var span = document.getElementsByClassName("close")[0]
     var regOk = 0
+    var link, param, finalParam = ""
     
     //----------------- detecta acciones en los input -----------------//
 
@@ -156,11 +157,11 @@ window.onload = function() {
         } else {
             intereses = ""
             remErrInt()
-            var check1 = (intMus.checked) ? intereses = "-musica-" : intereses = intereses
-            var check2 = (intDep.checked) ? intereses = intereses + "-deportes-" : intereses = intereses
-            var check3 = (intJue.checked) ? intereses = intereses + "-juegos-" : intereses = intereses
-            var check4 = (intTec.checked) ? intereses = intereses + "-tecnologia-" : intereses = intereses
-            var check5 = (intTemOtro.checked) ? intereses = intereses + "-otro-" : intereses = intereses
+            var check1 = (intMus.checked) ? intereses = "musica;" : intereses = intereses
+            var check2 = (intDep.checked) ? intereses = intereses + "deportes;" : intereses = intereses
+            var check3 = (intJue.checked) ? intereses = intereses + "juegos;" : intereses = intereses
+            var check4 = (intTec.checked) ? intereses = intereses + "tecnologia;" : intereses = intereses
+            var check5 = (intTemOtro.checked) ? intereses = intereses + "otro;" : intereses = intereses
             regOk++
         }
     }
@@ -184,19 +185,31 @@ window.onload = function() {
         valIntVacio()
         valPais()
         if (regOk == 7) {
-            openModal()
             enviaDatos()
         }
     }
 
-    function openModal () {
-        modal.style.display = "block";
+    function enviaDatos () {
+        link = "http://curso-dev-2021.herokuapp.com/newsletter?"
+        param = "name=" + nombre.value + "&surname=" + apellido.value + "&email=" + email.value + "&age=" + edad.value + "&gender=" + sexo + "&interests=" + intereses + "&country=" + pais.value + "&coments=" + comentarios.value
+        finalParam = link + param
+        //console.log(finalParam)
+
+        fetch (finalParam)
+            .then(function(respuesta) {
+                return respuesta.json()
+            })
+            .then(function(datos) {
+                console.log(datos)
+                document.getElementById("textoModal").innerHTML = JSON.stringify(datos, null, 2)
+                openModal()
+            })
+            .catch(function(error) {
+                alert("Hubo un problema al enviar los datos, intente nuevamente!!!")
+            })
     }
 
-    function enviaDatos () {
-        var link = "http://curso-dev-2021.herokuapp.com/newsletter?"
-        var param = "name=" + nombre.value + "&surname=" + apellido.value + "&email=" + email.value + "&age=" + edad.value + "&gender=" + sexo + "&interests=" + intereses + "&country=" + pais.value + "&coments=" + comentarios.value
-        var finalParam = link + param
-        console.log(finalParam)
+    function openModal () {
+        modal.style.display = "block";
     }
 }

@@ -73,7 +73,9 @@ input[type=button] {
 }
 
 /* ---------------------- Estilos ------------------------------*/
-
+h1 {
+    text-align: center;
+}
 nav, body {
     background-color: grey;
 }
