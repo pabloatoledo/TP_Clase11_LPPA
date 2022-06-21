@@ -13,6 +13,7 @@ window.onload = function() {
     var sexo = ""
     var errSexo = document.getElementById("errSexo")
     var errInt = document.getElementById("errInt")
+    var intereses = ""
     var intMus = document.getElementById("musica")
     var intDep = document.getElementById("deporte")
     var intJue = document.getElementById("juego")
@@ -20,6 +21,7 @@ window.onload = function() {
     var intTemOtro = document.getElementById("tema_otro")
     var errPais = document.getElementById("errPais")
     var pais = document.getElementById("pais")
+    var comentarios = document.getElementById("comentarios")
     var btnEviar = document.getElementById("enviar")
     var modal = document.getElementById("modal_ok")
     var span = document.getElementsByClassName("close")[0]
@@ -152,7 +154,13 @@ window.onload = function() {
         if(!intMus.checked && !intDep.checked && !intJue.checked && !intTec.checked && !intTemOtro.checked) {
             showErrInt()
         } else {
+            intereses = ""
             remErrInt()
+            var check1 = (intMus.checked) ? intereses = "-musica-" : intereses = intereses
+            var check2 = (intDep.checked) ? intereses = intereses + "-deportes-" : intereses = intereses
+            var check3 = (intJue.checked) ? intereses = intereses + "-juegos-" : intereses = intereses
+            var check4 = (intTec.checked) ? intereses = intereses + "-tecnologia-" : intereses = intereses
+            var check5 = (intTemOtro.checked) ? intereses = intereses + "-otro-" : intereses = intereses
             regOk++
         }
     }
@@ -187,7 +195,7 @@ window.onload = function() {
 
     function enviaDatos () {
         var link = "http://curso-dev-2021.herokuapp.com/newsletter?"
-        var param = "name=" + nombre.value + "&surname=" + apellido.value + "&email=" + email.value + "&age=" + edad.value + "&gender=" + sexo
+        var param = "name=" + nombre.value + "&surname=" + apellido.value + "&email=" + email.value + "&age=" + edad.value + "&gender=" + sexo + "&interests=" + intereses + "&country=" + pais.value + "&coments=" + comentarios.value
         var finalParam = link + param
         console.log(finalParam)
     }
