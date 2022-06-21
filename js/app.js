@@ -193,7 +193,6 @@ window.onload = function() {
         link = "http://curso-dev-2021.herokuapp.com/newsletter?"
         param = "name=" + nombre.value + "&surname=" + apellido.value + "&email=" + email.value + "&age=" + edad.value + "&gender=" + sexo + "&interests=" + intereses + "&country=" + pais.value + "&coments=" + comentarios.value
         finalParam = link + param
-        //console.log(finalParam)
 
         fetch (finalParam)
             .then(function(respuesta) {
