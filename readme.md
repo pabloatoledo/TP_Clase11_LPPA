@@ -1,4 +1,3 @@
-En este repositorio se encuentra una página para el primer parcial de LPPA.
-Contiene un formulario con estilos y validación con js.
+Se toma como base el formulario creado para el parcial, pero se añaden nuevas características de validación y envío de datos mediante el método get a través de JS
 
-Link github pages: https://pabloatoledo.github.io/parcial01_lppa/
+Link github pages: https://pabloatoledo.github.io/TP_Clase11_LPPA/
