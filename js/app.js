@@ -10,6 +10,7 @@ window.onload = function() {
     var errMail = document.getElementById("errMail")
     var edad = document.getElementById("edad")
     var errEdad = document.getElementById("errEdad")
+    var sexo = ""
     var errSexo = document.getElementById("errSexo")
     var errInt = document.getElementById("errInt")
     var intMus = document.getElementById("musica")
@@ -142,6 +143,7 @@ window.onload = function() {
             showErrSexo()
         } else {
             remErrSexo()
+            sexo = document.querySelector('input[name="sexo"]:checked').value
             regOk++
         }
     }
@@ -175,10 +177,18 @@ window.onload = function() {
         valPais()
         if (regOk == 7) {
             openModal()
+            enviaDatos()
         }
     }
 
     function openModal () {
         modal.style.display = "block";
+    }
+
+    function enviaDatos () {
+        var link = "http://curso-dev-2021.herokuapp.com/newsletter?"
+        var param = "name=" + nombre.value + "&surname=" + apellido.value + "&email=" + email.value + "&age=" + edad.value + "&gender=" + sexo
+        var finalParam = link + param
+        console.log(finalParam)
     }
 }
